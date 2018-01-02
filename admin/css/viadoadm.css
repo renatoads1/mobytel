@@ -1,0 +1,54 @@
+.top-nav > li > a:hover, .top-nav > li > a:focus, .top-nav > .open > a, .top-nav > .open > a:hover, .top-nav > .open > a:focus 
+{
+  color: #ff5301;
+}
+
+/*renato*/
+
+#cabtabela th{
+  color: pink;
+}
+#corptabela{
+  color: pink;
+}
+#bemvindo{
+        color: #8E8E8E;
+        letter-spacing:5px;
+    }
+    .side-nav li a:hover,
+    .side-nav li a:focus 
+    {
+        outline: none;
+        background-color: #dd4320 !important;
+    }
+       #nav a,
+       #nav a:hover,
+       #nav a:focus{
+        color: #ffffff;
+      } 
+      #rola a {
+        background-color: #ff5301;
+        color: #ffffff;
+      }
+       .navbar-inverse .navbar-nav > li > a{
+        color: #ffffff;
+       }
+       .navbar-inverse .navbar-nav > li > a:hover{
+        background-color:#FF6347; 
+        color: #FF6347;
+       }       
+       body{
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.42857143;
+          color: #5cb85c;
+          background-color: #F3F5F9;
+       }
+       #nav{
+           background-color: #ff5301;
+       }
+
+/*renato*/
+
+
+

@@ -1,0 +1,408 @@
+<?php
+$gmtDate = gmdate("D, d M Y H:i:s"); 
+header("Expires: {$gmtDate} GMT"); 
+header("Last-Modified: {$gmtDate} GMT"); 
+header("Cache-Control: no-cache, must-revalidate"); 
+header("Pragma: no-cache");
+header("Access-Control-Allow-Origin: *");/*aceita post de todas os sites*/
+header('Content-Type: text/html; charset=utf-8');
+if(isset($_POST["tabela"]) or isset($_GET["tabela"]))
+{
+   if($_POST["tabela"]=="tabela_log")
+	{
+		$tabela = $_POST["tabela"];
+		$user = $_POST["user"];
+		$senha = $_POST["senha"];
+		$user = str_replace("\"", "",$user);
+		$senha = str_replace("\"", "",$senha);//limpa variavel
+		$senha = md5($senha);
+        
+        /*teste de validade do login e senha*/
+		$query = "select *from usuarios_lembrete where user = '".$user."'and senha = '".$senha."'";
+        $cmd = mysqli_query($conexao,$query);
+        
+        $cont = mysqli_num_rows($cmd);
+        
+        if($cont > 0)
+        {
+            $linha = mysqli_fetch_object($cmd);
+            $resp = $linha->id;
+            echo($resp);
+        }else{
+            echo(0);    
+        }
+	    
+        /*teste de validade do login e senha*/
+	
+	}else if($_POST["tabela"]=="tab_grava_user")
+	{/*grava dados imovel*/
+		$email = $_POST["email"];/*email*/
+		$tell = $_POST["tell"];/*tell*/
+		$cell = $_POST["cell"];/*cell*/
+		$user = $_POST["user"];/*user*/
+		$senha = $_POST["senha"];/*senha*/
+       
+		$nova_senha = $_POST["nova_senha"];/*nova_senha*/
+		$tabela = $_POST["tab_grava_user"];/*tab_grava_user*/
+        $senha = md5($senha);
+       
+		if(isset($email) && isset($senha) && isset($nova_senha) && ($user != "") && ($senha != "") )
+		{
+            /*gravar aqui os dados do cadastro*/
+            
+            $gravaCadastro = "INSERT INTO usuarios_lembrete(user,senha,cell,tell,email)VALUES ('".$user."','".$senha."','".$cell."','".$tell."','".$email."')";
+        
+			$respz = mysqli_query($conexao,$gravaCadastro);
+			if ($respz > 0)
+			{	//Buscar o ultimo codigo imovel inserido
+				echo(1);
+							
+			}else{//se nao houve retorno do insert
+				echo(0);
+				exit;
+			}
+		}else{
+				echo(0);
+				exit;
+		}
+	
+	}else if($_POST["tabela"]=="grava_lembrete")
+   {
+        $data = $_POST["data"];/*data*/
+		$lembrete = $_POST["lembrete"];/*lembrete*/
+		$iduser = $_POST["iduser"];/*iduser*/
+       
+       if(isset($data) && isset($lembrete) && isset($iduser) && ($data != "") && ($lembrete != "") )
+		{
+            /*gravar aqui os dados do lembrete*/
+           $datal = substr($data, 0, -6);  // data"
+           $hora = substr($data, 11);  // hora"
+            $gravalembrete = "INSERT INTO lembretes(iduser,lembrete,data,hora)VALUES ('".$iduser."','".$lembrete."','".$datal."','".$hora."')";
+            
+			$respz = mysqli_query($conexao,$gravalembrete);
+			if ($respz > 0)
+			{	//Buscar o ultimo codigo imovel inserido
+				//echo(1);
+                echo($gravalembrete."<h2>inseriu<h2>");
+			}else{//se nao houve retorno do insert
+				//echo(0);
+                echo($gravalembrete."<h2>não inseriu<h2>");
+				exit;
+			}
+		}
+		
+       
+   }else if($_POST["tabela"]=="busca_lembretes")
+       {
+           //INICIO busca_lembretes
+           $id = $_POST["id"];
+           $dataf = $_POST["dataf"];
+           $tabela = $_POST["tabela"];
+                      
+            $strlembretes = "SELECT * FROM lembretes WHERE data = '".$dataf."' and iduser = '".$id."'";
+            $cmd = mysqli_query($conexao,$strlembretes);
+            $cont = mysqli_num_rows($cmd);
+        
+        if($cont > 0)
+        {
+            //pega retorno do banco e fatia em um array associativo
+        while($linha = mysqli_fetch_assoc($cmd)){
+        $vetor[] = array_map('utf8_encode', $linha); 
+    }
+            //serializa e envia para o arquivo de retorno
+            echo(json_encode($vetor));                      
+        }else{
+            //echo($strlembretes." esta e <0");
+            echo(0);    
+        }    
+           //FIM busca_lembretes
+     
+        }else if($_POST["tabela"]=="tab_de_ate")
+	{//INICIO tab_de_ate
+       
+        $id = $_POST["id"];
+        $de_data = $_POST["de_data"];
+        $ate_data = $_POST["ate_data"];
+        $de_dia = $_POST["de_dia"];
+        $de_mes = $_POST["de_mes"];
+        $de_ano = $_POST["de_ano"];
+        $ate_dia = $_POST["ate_dia"];
+        $ate_mes = $_POST["ate_mes"];
+        $ate_ano = $_POST["ate_ano"];
+       
+        $datade = $de_ano."-".$de_mes."-".$de_dia;
+        $dataate = $ate_ano."-".$ate_mes."-".$ate_dia;
+       //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+       $strlembretes ="SELECT * FROM lembretes WHERE iduser ='".$id."' and data >'".$datade."' and data < '".$dataate."'";
+       
+            $cmd = mysqli_query($conexao,$strlembretes);
+            $cont = mysqli_num_rows($cmd);
+        
+        if($cont > 0)
+        {
+            //pega retorno do banco e fatia em um array associativo
+        while($linha = mysqli_fetch_assoc($cmd)){
+        $vetor[] = array_map('utf8_encode', $linha); 
+    }
+            //serializa e envia para o arquivo de retorno
+            echo(json_encode($vetor));                      
+        }else{
+            //echo($strlembretes." esta e <0");
+            echo(0);    
+        }    
+           //FIM tab_de_ate
+	
+   
+   }else if($_POST["tabela"]=="busca_lembretes")
+       {
+           //INICIO busca_lembretes
+           $id = $_POST["id"];
+           $dataf = $_POST["dataf"];
+           $tabela = $_POST["tabela"];
+                      
+            $strlembretes = "SELECT * FROM lembretes WHERE data = '".$dataf."' and iduser = '".$id."'";
+            $cmd = mysqli_query($conexao,$strlembretes);
+            $cont = mysqli_num_rows($cmd);
+        
+        if($cont > 0)
+        {
+            //pega retorno do banco e fatia em um array associativo
+        while($linha = mysqli_fetch_assoc($cmd)){
+        $vetor[] = array_map('utf8_encode', $linha); 
+    }
+            //serializa e envia para o arquivo de retorno
+            echo(json_encode($vetor));                      
+        }else{
+            //echo($strlembretes." esta e <0");
+            echo(0);    
+        }    
+           //FIM busca_lembretes
+     
+        }else if($_POST["tabela"]=="SobreInovel")
+	{//altera sobre o imovel
+				/*
+				tabelaSobreImovel = SobreInovel
+				*/
+
+		$codImovel = $_POST["codImovel"];/**/
+		$Numero_de_Quartos = $_POST["Numero_de_Quartos"];/**/
+		$Numero_de_Suítes = $_POST["Numero_de_Suítes"];/**/
+		$Numero_de_Salas = $_POST["Numero_de_Salas"];/**/
+		$Numero_de_banhos = $_POST["Numero_de_banhos"];/**/
+		$Numero_de_Elevadores = $_POST["Numero_de_Elevadores"];/**/
+		$Quantidade_por_andar = $_POST["Quantidade_por_andar"];/**/
+		$Numero_de_Garagens = $_POST["Numero_de_Garagens"];/**/
+		$Area_util = $_POST["Area_util"];/**/
+		$Area_do_terreno = $_POST["Area_do_terreno"];/**/
+		$Idade = $_POST["Idade"];/**/
+		$posicao = $_POST["posicao"];/**/
+		$iptu = $_POST["iptu"];/**/
+		//dadosdo captador da imob e da rede
+		$preco = $_POST["preco"];/**/
+	
+		if(isset($codImovel))
+		{
+$updateSobreInovel="update sinai_prov set nquartos='".$Numero_de_Quartos
+."',quartos='".$Numero_de_Quartos
+."',suites='".$Numero_de_Suítes
+."',salas='".$Numero_de_Salas
+."',banho='".$Numero_de_banhos
+."',elevadores='".$Numero_de_Elevadores
+."',apandar='".$Quantidade_por_andar
+."',garagens='".$Numero_de_Garagens
+."',m2util='".$Area_util
+."',m2terreno='".$Area_do_terreno
+."',idade='".$Idade
+."',posicao='".$posicao
+."',iptu='".$iptu
+."',preco='".$preco
+."'where codimovel='".$codImovel."'";
+$strquery = trim($updateSobreInovel);
+			$upd = mysqli_query($conexao,$strquery);
+			if ($upd>0)
+			{	//testa para saber se os dados foram alterados
+				echo(1);
+			}else{//se nao houve retorno do insert
+				echo($updateSobreInovel);
+				exit;
+			}
+		}else{
+				echo(0);
+				  exit;
+		}
+	}else if($_POST["tabela"]=="tabDetalhes")
+	{//altera Detalhes 
+		$codImovel = $_POST["codImovel"];/**/
+		$Armario_nos_quartos = $_POST["Armario_nos_quartos"];/**/
+		$Varanda = $_POST["Varanda"];/**/
+		$Salao_de_Jogos = $_POST["Salao_de_Jogos"];/**/
+		$Vagas_Separadas = $_POST["Vagas_Separadas"];/**/
+		$Churrasqueira = $_POST["Churrasqueira"];/*Churrasqueira*/
+		$Blindex = $_POST["Blindex"];/**/
+		$Lavabo = $_POST["Lavabo"];/*Lavabo*/
+		$Piscina = $_POST["Piscina"];/**/
+		$Box_Despejo = $_POST["Box_Despejo"];/*Box_Despejo*/
+		$Interfone = $_POST["Interfone"];/*Interfone*/
+		$Academia = $_POST["Academia"];/*Academia*/
+		$D_C_E = $_POST["D_C_E"];/**/
+		$Despensa = $_POST["Despensa"];/*Despensa*/
+		$Desocupado = $_POST["Desocupado"];/**/
+		$Quadra_Esp = $_POST["Quadra_Esp"];/**/
+		$Play_Groud = $_POST["Play_Groud"];/*Play_Groud*/
+		$Rouparia = $_POST["Rouparia"];/*Rouparia*/
+		$Armarios_na_Cozinha = $_POST["Armarios_na_Cozinha"];/**/
+		$Area_Privativa = $_POST["Area_Privativa"];/**/
+		$Sala_de_Festas = $_POST["Sala_de_Festas"];/**/
+		$Porteiro = $_POST["Porteiro"];/**/
+		$Sauna = $_POST["Sauna"];/*Sauna*/
+		$Area_Livre = $_POST["Area_Livre"];/**/
+		$Caracteristicas=	$_POST["Caracteristicas"];//ok
+
+		if(isset($codImovel))
+		{
+$updateSobreInovel="update sinai_prov set armquartos='".$Armario_nos_quartos
+."',blindex='".$Blindex
+."',dce='".$D_C_E
+."',armcozinha='".$Armarios_na_Cozinha
+."',varanda='".$Varanda
+."',arprivativa='".$Area_Privativa
+."',garagens='".$Vagas_Separadas
+."',arlazer='".$Area_Livre
+."',piscina='".$Piscina
+."',desocupado='".$Desocupado
+."',salafestas='".$Sala_de_Festas
+."',salajogos='".$Salao_de_Jogos
+."',esportes='".$Quadra_Esp
+."',porteiro='".$Porteiro
+."',vagassep='".$Vagas_Separadas
+."',obs='".$Caracteristicas
+."'where codimovel = '".$codImovel."'";
+$strquery = trim($updateSobreInovel);
+			$upd = mysqli_query($conexao,$strquery);
+			if ($upd>0)
+			{	//testa para saber se os dados foram alterados
+				echo(1);
+			}else{//se nao houve retorno do insert
+				echo($updateSobreInovel);
+				exit;
+			}
+		}else{
+				echo(0);
+				  exit;
+		}
+	}else if($_POST["tabela"]=="kakashi"||$_GET["tabela"]=="kakashi"){
+//include("PHPMailer/class.phpmailer.php");
+
+$mail = new PHPMailer(true);
+$mail->IsSMTP(); // Define que a mensagem será SMTP
+try {
+     $mail->Host = 'smtp.mobytel.com.br'; // Endereço do servidor SMTP (Autenticação, utilize o host smtp.seudomínio.com.br)
+     $mail->SMTPAuth   = true;  // Usar autenticação SMTP (obrigatório para smtp.seudomínio.com.br)
+     $mail->Port       = 587; //  Usar 587 porta SMTP
+     $mail->Username = 'emaildowebsite@mobytel.com.br'; // Usuário do servidor SMTP que vai enviar o email (endereço de email)
+     $mail->Password = 'm0b1t3l3c0m'; // Senha do servidor SMTP (senha do email usado)
+ 
+     $mail->SetFrom('emaildowebsite@mobytel.com.br', 'Website'); //Seu e-mail
+     $mail->AddReplyTo('emaildowebsite@mobytel.com.br', 'website'); //Seu e-mail
+     $mail->Subject = 'Vendas';//Assunto do e-mail
+     $mail->AddAddress('renatoads1@gmail.com.br', 'Teste Locaweb');
+ 
+     //$mail->AddCC('destinarario@dominio.com.br', 'Destinatario'); // Copia
+     //$mail->AddBCC('destinatario_oculto@dominio.com.br', 'Destinatario2`'); // Cópia Oculta
+     //$mail->AddAttachment('images/phpmailer.gif');      // Adicionar um anexo
+ 
+ 
+     $mail->MsgHTML('corpo do email'); 
+ 
+     ////Caso queira colocar o conteudo de um arquivo utilize o método abaixo ao invés da mensagem no corpo do e-mail.
+     //$mail->MsgHTML(file_get_contents('arquivo.html'));
+ 
+     $mail->Send();
+     echo "Mensagem enviada com sucesso</p>\n";
+ 
+    //caso apresente algum erro é apresentado abaixo com essa exceção.
+    }catch (phpmailerException $e) {
+      echo $e->errorMessage(); }//Mensagem de erro costumizada do PHPMailer
+
+		//fim do envio de email
+	}else if($_POST["tabela"]=="tabFoto")
+	{//inicio manda fotos
+	$numfoto		=	$_POST["cap_numfoto"];
+	$codImovel	=	$_POST["cap_codImovel"];
+	$para		=	$_POST["cap_para"];
+	$captador		=	$_POST["cap_id"];
+	$idRede		=	$_POST["cap_idRede"];
+	$codImob		=	$_POST["cap_codImob"];
+	$fotoImovel	=	$_FILES["fileUpload"]["name"];
+	$fotoImoveltmp	=	$_FILES["fileUpload"]["tmp_name"];
+	/******configuração******************************************/
+	set_time_limit(0);
+	$limitar_extensoes = "sim";
+	$extensoes_validas = array(".jpg",".jpeg");	
+	if($para == "Alugar")
+	{
+		$tpImv = "img_aluguel";
+	}else if($para == "Vender")
+	{
+		$tpImv = "img_vendas";
+	}
+	$caminho_absoluto = "img/".$idRede."/".$tpImv."/".$codImob."";
+	/************testa o diretorio***********/
+	if (file_exists($caminho_absoluto))
+	{
+		//deixa o como esta
+	}else{//criando pastas e subpastas 
+		mkdir("img/".$idRede."/", 0777);
+		mkdir("img/".$idRede."/".$tpImv, 0777);
+		mkdir($caminho_absoluto, 0777);
+	}
+	//var_dump($fotoImovel);
+	$limitar_tamanho = "nao";
+	$tamanho_arq_bits="200000000000";
+	$sobrescrever = "nao";
+	if(move_uploaded_file ($fotoImoveltmp,$caminho_absoluto."/".$idRede."_".$codImob."_".$codImovel."_".$numfoto.".jpg"))
+	{
+		$url = $caminho_absoluto."/".$idRede."_".$codImob."_".$codImovel."_".$numfoto.".jpg";
+		$queryImgBanco = "insert into img_prov (codimobiliaria,codimovel,tipo,codRede,codCaptador,url)values ('".$codImob."','".$codImovel."','".$tpImv."','".$idRede."','".$captador."','".$url."')";
+		$insereImgBanco = mysqli_query($conexao,$queryImgBanco);
+		if($insereImgBanco>0){
+		echo("ok");	
+		}else{echo($queryImgBanco);}
+		
+	}else{
+		echo("erro");
+	}
+	//copy($fotoImovel,"/".$caminho_absoluto."teste.jpg");
+	
+//copy($fotoImovel,$caminho_absoluto."/".$idRede."_".$codImob."_".$codImovel."_".$numfoto.".jpg");
+		
+	}else if($_POST["tabela"]=="buscaCaptacoes")
+	{
+		/*inicio*/
+		$id = $_POST["id"];/**/
+		$nivel = $_POST["nivel"];/**/
+		$idRede = $_POST["idRede"];/**/
+		$codImob = $_POST["codImob"];/**/
+		
+			$strqueryUser= "select * from sinai_prov where codCaptador ='".$id."' and  codimobiliaria ='".$codImob."' and   codRede ='".$idRede."'";
+			$respz = mysqli_query($conexao,$strqueryUser);
+			
+			if (mysqli_num_rows($respz) == 0) 
+			{
+			    //echo "Não foram encontradas linhas, nada para mostrar, assim eu estou saindo".$strqueryUser;
+			    echo(0);
+			    exit;
+			}//fim if
+			$dados = "";
+			while($linha = mysqli_fetch_object($respz))
+			{
+		//$id	$nivel $idRede	$codImob
+		$dados .= $linha->codimovel.'/'.$linha->bairro.'/'.$linha->Tipoimovel.'*';
+		//echo(json_encode($linha));
+			}echo($dados);
+		/*fim*/
+	}else{
+		echo("tabela indefinida");
+	}
+}
+?>

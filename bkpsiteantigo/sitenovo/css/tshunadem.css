@@ -1,0 +1,255 @@
+  #complemento{
+        width: 15%;
+        height: 30px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        color: black;
+    }
+    #numerotel{
+        width: 30%;
+        height: 30px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        color: black;
+    }
+/*layout PC*/
+@media (min-width: 768px) {
+  #logo{
+    position: relative;
+    left: -10px;
+    width: 170px;
+    height: 60px;
+    }
+}    
+/*layout celular*/
+@media screen and (max-width: 480px) {
+  #logo{
+    position: relative;
+    top:  -50px;
+    left: -20px;
+    width: 120px;
+    height: 30px;
+    }
+
+#caixaTextoPlanos{
+  margin-top: 15px;
+    }
+
+
+} 
+    #linhacaixaconteudo{
+      font-family: 'Open Sans', sans-serif;
+      height: 450px;
+        color:#8E8E8E;
+    }
+/*separador abaixo código que estava no bootstrap*/
+#linha-caixa-conteudo{
+            min-height: 350px;
+        }
+#titulocomofunciona3{
+  margin-top: 300px;
+}
+#banner{
+  width: 100%;
+}
+#viadinhofdp{
+  background-image: url('/img/bgvermelho.png');
+  height: auto;
+}
+#telefonefilhodaputa{
+
+  width: 150px;
+  height: 130px;
+    z-index: 9;
+    position: relative;
+    left: 190px;
+    top:400px;
+}
+#faleconosco-texto-f-branco{
+  margin-top: 130px;
+  margin-bottom: 130px;
+}
+#texto-f-cinza{
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 130px;
+  margin-bottom: 130px;
+  font-size: 22px;
+  color:#8E8E8E;
+}
+#spcontato{
+  font-size: 18px;
+  float: left;
+  margin-top: 5px;
+  margin-left: 5px;
+  text-align: left;
+}
+
+#span-input{
+  color: #FF7210;
+  font-style: Myriad Pro;
+
+}
+#link-text-fa{
+   color: #FF7210;
+   font-style: normal;
+   background-color:#F3F5F9;
+
+}
+#head-001{
+  background-color: #F3F5F9;
+}
+#head1{
+  margin-top: 2px;
+  float:right;
+  border: 1px solid blue;
+}
+#contato-secao{
+  border-top: solid 2px #797b7d;
+  }
+#estlaranja{
+  color: #FF551B;
+}
+#divFaleconosco{
+  float:left;
+  text-align:left;
+}
+#btnform{
+  background-color:#FF551B;
+}
+#bgcinza{
+background-color:#F3F5F9;
+}
+#caixaTextoPreco{
+  border-top: solid 1px #85DCF5;
+  margin-top: 5px;
+  font-color:#8D8D8D;
+  text-align:left;
+  font-size: 18px;
+
+}
+#caixaTextoPlanos{
+  height: 170px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 0px;
+  margin-left: 0px;
+  font-style: Myriad Pro;
+  font-color:#8D8D8D;
+  text-align:left;
+  font-size: 18px;
+  /*font-weight: bold;*/
+ /*font-style: italic;*/
+}
+#txtPrecoProm{
+
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  font-style: Myriad Pro;
+  color:#FF551B;
+  text-align:right;
+  font-size: 22px;
+  font-weight: bold;
+ font-style: italic;
+}
+#txtPreco{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  font-style: Myriad Pro;
+  color:#ffffff;
+  text-align:right;
+
+}
+#laranja{
+
+
+  background: #F13515; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #F13515 , #FF9401); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #F13515, #FF9401); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #F13515, #FF9401); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #F13515 , #FF9401); /* Standard syntax */
+}
+#videocontent{
+  background-color:#F3F5F9;
+}
+#titulos2{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 0px;
+  margin-left: 0px;
+  font-style: Myriad Pro;
+  color:#ffffff;
+  text-align:center;
+}
+#btntextbranco{
+  font-style: Myriad Pro;
+  color:#ffffff;
+  text-align:right;
+  font-size: 16px;
+}
+#textbranco{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  font-style: Myriad Pro;
+  color:#ffffff;
+  text-align:left;
+  font-size: 24px;
+}
+#tit-serv{
+  color:#85DBF4;
+  text-align:center;
+  size: 29px;
+  font-weight: bold;
+}
+#titulos{
+    color:#8D8D8D;
+    text-align:center;
+    font-family: Monospace;
+}
+/*
+#titulospita{
+    font-family: Monospace;
+    font-style: italic;
+    color:#8D8D8D;
+    text-align:center;
+}
+*/
+#banner1{
+/*background-color: blue;*/
+    position: relative;
+    
+}
+#bs-example-navbar-collapse-1{
+  background-color: #fff;
+  float: right;
+}
+#dropdown{
+    color: #FF7210;
+   font-style: normal;
+}
+#link-text{
+font-family: Arial;
+  color: #FF7210;
+  font-style: bold;
+  font-size: 22px;
+}
+
+#barra-cinza{
+  background-color: #F1F3F7;
+}
+#mainNav{
+  background-color: #fff;
+   z-index: 10;
+}
+#mainNav :li{
+  background-color: #fff;
+}

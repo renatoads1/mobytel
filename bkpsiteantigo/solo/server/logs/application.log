@@ -1,0 +1,44 @@
+[2017-06-19 21:22:10] [error] Invalid TimeEntry(id - )
+    task_id: array(
+        0 => 'This field is required',
+    )
+[2017-06-19 21:22:10] [error] Fatal Error (1): Uncaught exception 'phpSweetPDO\Exceptions\DbException' with message 'Database error [42000]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1, driver error code is 1064 SQL: SELECT * FROM time_entries WHERE task_id =  Arguments: array (
+)' in /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php:89
+Stack trace:
+#0 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php(77): phpSweetPDO\Recordset->_refresh()
+#1 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.connection.class.php(96): phpSweetPDO\Recordset->__construct(Object(PDOStatement), Array)
+#2 /home/storage/6/89/88/mobytel/public_html/solo/server/core/model.class.php(115): phpSweetPDO\Connection->select('SELECT * FROM t...')
+#3 /home/storage/6/89/88/mobytel/public_html/solo/server/application/models/task.php(360): Model->get('WHERE task_id =...')
+#4 /home/storage/
+    code: 1
+    message: 'Uncaught exception 'phpSweetPDO\Exceptions\DbException' with message 'Database error [42000]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1, driver error code is 1064 SQL: SELECT * FROM time_entries WHERE task_id =  Arguments: array()' in /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php:89
+    Stack trace:
+    #0 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php(77): phpSweetPDO\Recordset->_refresh()
+    #1 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.connection.class.php(96): phpSweetPDO\Recordset->__construct(Object(PDOStatement), Array)
+    #2 /home/storage/6/89/88/mobytel/public_html/solo/server/core/model.class.php(115): phpSweetPDO\Connection->select('SELECT * FROM t...')
+    #3 /home/storage/6/89/88/mobytel/public_html/solo/server/application/models/task.php(360): Model->get('WHERE task_id =...')
+    #4 /home/storage/'
+    file: '/home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php'
+    line: 89
+[2017-06-19 21:22:11] [error] Invalid TimeEntry(id - )
+    task_id: array(
+        0 => 'This field is required',
+    )
+[2017-06-19 21:22:11] [error] Fatal Error (1): Uncaught exception 'phpSweetPDO\Exceptions\DbException' with message 'Database error [42000]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1, driver error code is 1064 SQL: SELECT * FROM time_entries WHERE task_id =  Arguments: array (
+)' in /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php:89
+Stack trace:
+#0 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php(77): phpSweetPDO\Recordset->_refresh()
+#1 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.connection.class.php(96): phpSweetPDO\Recordset->__construct(Object(PDOStatement), Array)
+#2 /home/storage/6/89/88/mobytel/public_html/solo/server/core/model.class.php(115): phpSweetPDO\Connection->select('SELECT * FROM t...')
+#3 /home/storage/6/89/88/mobytel/public_html/solo/server/application/models/task.php(360): Model->get('WHERE task_id =...')
+#4 /home/storage/
+    code: 1
+    message: 'Uncaught exception 'phpSweetPDO\Exceptions\DbException' with message 'Database error [42000]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1, driver error code is 1064 SQL: SELECT * FROM time_entries WHERE task_id =  Arguments: array()' in /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php:89
+    Stack trace:
+    #0 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php(77): phpSweetPDO\Recordset->_refresh()
+    #1 /home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.connection.class.php(96): phpSweetPDO\Recordset->__construct(Object(PDOStatement), Array)
+    #2 /home/storage/6/89/88/mobytel/public_html/solo/server/core/model.class.php(115): phpSweetPDO\Connection->select('SELECT * FROM t...')
+    #3 /home/storage/6/89/88/mobytel/public_html/solo/server/application/models/task.php(360): Model->get('WHERE task_id =...')
+    #4 /home/storage/'
+    file: '/home/storage/6/89/88/mobytel/public_html/solo/server/core/database/db.recordset.class.php'
+    line: 89

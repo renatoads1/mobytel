@@ -1,0 +1,66 @@
+id=4
+id_user=1
+canal=SIP/022000-00000075
+tronco=interlocalcelular
+ndiscado=988398385
+codec=alawstatus=
+Ring (4)
+duration=0
+reinvite=no
+from_ip=186.206.199.214
+server=localhost
+id_group=3
+id_group_agent=null
+id_plan=5
+id_offer=null
+image_user=images/profiles/1.jpg
+username=renatoads1
+password=r3n4t0321
+credit=271.6020
+active=1
+creationdate=2016-10-27 10:32:20
+firstusedate=0000-00-00 00:00:00
+expirationdate=0000-00-0000:00:00
+enableexpire=0
+expiredays=0
+lastname=Azevedo
+firstname=Renato
+address=R. Claudio Manoel 237 B: Funcionarios
+city=Belo Horizontestate=Minas Gerais
+country=55
+zipcode=31100-200
+phone=32719979
+mobile=987836901
+email=ti@mobytel.com.br
+vat=
+company_name=Mobycompany_website=
+lastuse=2017-08-14 11:35:06
+typepaid=1
+creditlimit=75
+language=br
+redial=1988398385
+loginkey=
+last_notification=null
+credit_notification=10
+restriction=0
+callingcard_pin=755499
+prefix_local=call
+shop=0
+plan_day=0
+record_call=0
+active_paypal=0
+boleto=0
+boleto_day=0
+description=
+last_login=0000-00-00 00:00:00
+googleAuthenticator_enable=0
+google_authenticator_key=doc=59339659600
+id_sacado_sac=null
+valorSms=0.015
+inicio_instalacao=0000-00-00 00:00:00
+gerarboleto=0
+tiplano=posuserassociado=null
+principal=1
+diaVencimento=20
+envioSMS=1
+contratoSms=1
